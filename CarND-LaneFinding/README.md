@@ -3,7 +3,7 @@
 
 <img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
-**NOTE**: Please find the project pipline, implementation overview, potential shortcomings and possible improvements to the pipeline in the [Project Overview.md](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/Project%20Overview.md)  
+**NOTE**: Please find the project pipline, implementation overview, potential shortcomings and possible improvements to the pipeline in the [Project Overview.md](https://github.com/mayB1998/Self-Driving-Car-Algorithms/blob/main/CarND-LaneFinding/Project%20Overview.md)  
 
 # Overview
 ---
@@ -68,37 +68,37 @@ A browser window will appear showing the contents of the current directory.  Cli
 
 # Solution Pipeline Overview
 ---
-![Solution Pipeline Overview](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/img/solution%20pipeline%20overview.png)  
+![Solution Pipeline Overview](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/solution%20pipeline%20overview.png)  
 ## 1. **Grayscaling**: 
 We process the image or frame within the video by changing colorful image into grayscale. Each pixel can be represented with single 8-bit number (0~255).  
 
-![grayscale](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/solution%20pipeline%20output/grayscale/output_solidWhiteCurve.jpg)  
+![grayscale](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/solution%20pipeline%20output/grayscale/output_solidWhiteCurve.jpg)  
 
 
 ## 2. **Gaussian Blurring**: 
 To avoid sharp change in the image, we use Gaussian blurring in this project. We do so to avoid noise because we need to detect edge in next step. Smoothing can significantly improve the accuracy of edge detection later.  
 
-![gaussian blur](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/solution%20pipeline%20output/gaussian%20blur/output_solidWhiteCurve.jpg)  
+![gaussian blur](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/results/solution%20pipeline%20output/gaussian%20blur/output_solidWhiteCurve.jpg)  
 
 
 ## 3. **Canny Edge Detection**: 
 The lane line has different color from its neighboring region. It is quite natural to detect edges in the image, which are more likely to be the lane lines. Here we use classic Canny Edge Detection.  
 
-![canny](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/solution%20pipeline%20output/canny/output_solidWhiteCurve.jpg)  
+![canny](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/results/solution%20pipeline%20output/canny/output_solidWhiteCurve.jpg)  
 
 
 ## 4. **Finding the Region of Interest**: 
 There are too many edges found from previous step. To narrow down to region that more likely have lane line, we need to restrict our search within more small portion of the image, which is called region of interest. Similar to cropping the photos on our smartphones.  
 
-![region of interest](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/solution%20pipeline%20output/region%20of%20interest/output_solidWhiteCurve.jpg)  
+![region of interest](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/results/solution%20pipeline%20output/region%20of%20interest/output_solidWhiteCurve.jpg)  
 
 
 ## 5. **Hough Line Transform**: 
 Previous step generates many points consisting of edges. To detect continuous lane line, we need to find a line from these points. The most classic approach is to use Hough Transfrom and find intersection of different curves in Hough Space.  
 
-![Hough Line Transform](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/img/hough%20line%20transform.jpg)  
+![Hough Line Transform](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/img/hough%20line%20transform.jpg)  
 
-![hough transform](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/solution%20pipeline%20output/hough%20transform/output_solidWhiteCurve.jpg)  
+![hough transform](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/results/solution%20pipeline%20output/hough%20transform/output_solidWhiteCurve.jpg)  
 
 
 ## 6. **Extrapolating the left & right lane lines**: 
@@ -119,19 +119,19 @@ bottom_x=(maxY -b)/a = (image.shape[0] -b)/a
 As such, we can draw left lane line between points:
 (top_x, minY) and (bottom_x, maxY)  
 
-![Extrapolation of lane lines](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/img/extrapolating%20lines.png)  
+![Extrapolation of lane lines](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/img/extrapolating%20lines.png)  
 
-![draw lines](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/results/output_solidWhiteCurve.jpg)  
+![draw lines](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/results/results/results/output_solidWhiteCurve.jpg)  
 
 # Video Output:  
 
 ## Solid White (Right) Lane:  
 
-![solid white lane](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/GIFs/output_solidWhiteRight.gif)  
+![solid white lane](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/GIFs/output_solidWhiteRight.gif)  
 
 ## Solid Yellow (Left) Lane:  
 
-![solid yellow lane](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/GIFs/output_solidYellowLeft.gif)  
+![solid yellow lane](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/GIFs/output_solidYellowLeft.gif)  
 
 
-For a brief decription of this project including potential shortcomings and possible improvements to the pipeline, please refer to the [Project Overview.md](https://github.com/SandeepAswathnarayana/self-driving-car-engineer-nd/blob/master/CarND-LaneLines-P1/Project%20Overview.md)  
+For a brief decription of this project including potential shortcomings and possible improvements to the pipeline, please refer to the [Project Overview.md](https://github.com/mayB1998/Self-Driving-Car-Algorithms/tree/main/CarND-LaneFinding/Project%20Overview.md)  
